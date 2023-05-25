@@ -15,3 +15,19 @@ resource "hcloud_server" "server" {
     ipv6_enabled = true
   }
 }
+
+resource "gandi_livedns_record" "a_record" {
+  name = "server-of-${var.student_name}.pxl"
+  ttl = 10800
+  type = "A"
+  values = [ resource.hcloud_server.server.ipv4_address ]
+  zone = "bjth.xyz"
+}
+
+resource "gandi_livedns_record" "aaaa_record" {
+  name = "server-of-${var.student_name}.pxl"
+  ttl = 10800
+  type = "AAAA"
+  values = [ resource.hcloud_server.server.ipv6_address ]
+  zone = "bjth.xyz"
+}
