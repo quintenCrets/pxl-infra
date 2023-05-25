@@ -42,5 +42,5 @@ jobs:
         run: terraform init
       - name: "Apply Terraform code"
         id: apply
-        run: terraform apply -no-color
+        run: terraform apply -no-color -auto-approve -input=false
         continue-on-error: false
