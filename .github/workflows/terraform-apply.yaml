@@ -1,0 +1,46 @@
+name: 'Terraform Apply Workflow'
+on:
+  push:
+    branches:
+      - "trunk"
+jobs:
+  terraform_check:
+    name: "Check is Terraform code is valid"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.4.2"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: "Check for Terraform formatting errors"
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      - name: "Initialise Terraform"
+        id: init
+        run: terraform init
+      - name: "Validate Terraform code"
+        id: validate
+        run: terraform validate -no-color
+      - name: "Generate Terraform plan"
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: false
+  terraform_apply:
+    needs: [terraform_check]
+    name: "Apply Terraform code"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.4.2"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: "Initialise Terraform"
+        id: init
+        run: terraform init
+      - name: "Apply Terraform code"
+        id: apply
+        run: terraform apply -no-color
+        continue-on-error: false
