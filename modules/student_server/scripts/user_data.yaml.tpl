@@ -34,15 +34,9 @@ runcmd:
   - !!str "caddy fmt --overwrite /etc/caddy/Caddyfile"
   # Initialise PostgreSQL
   - !!str "postgresql-setup --initdb --unit postgresql"
-  - !!str "sudo -u postgres psql --command=\"CREATE ROLE psql WITH SUPERUSER CREATEDB
-    CREATEROLE LOGIN ENCRYPTED PASSWORD 'psql';\""
-  - !!str "sudo -u postgres psql --command='CREATE DATABASE webtech;'"
-  - !!str "sudo -u postgres psql --command='GRANT ALL PRIVILEGES ON DATABASE webtech
-    TO psql;'"
-  - !!str "sed -i 's/#listen_addresses = 'localhost'         # what IP address(es)
-    to listen on;/listen_addresses = '*' \t\t\t        # what IP address(es) to listen
-    on;/g' /var/lib/pgsql/data/postgresql.conf"
-  - !!str "echo 'host    all             all             0.0.0.0/0\t\tmd5' > /var/lib/pgsql/data/pg_hba.conf"
+  - !!str "sed -i \"s/#listen_addresses = 'localhost'/listen_addresses = '*'/g\" /var/lib/pgsql/data/postgresql.conf"
+  - !!str "echo 'host all all 0.0.0.0/0 trust' > /var/lib/pgsql/data/pg_hba.conf"
+  - !!str "echo 'host all all ::/0 trust' >>s /var/lib/pgsql/data/pg_hba.conf"
   # Install Admnier
   - !!str "wget --output-document=/var/www/adminer.php https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php"
   # Configure web root
