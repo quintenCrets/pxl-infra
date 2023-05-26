@@ -1,5 +1,6 @@
 data "template_file" "user_data" {
-  template = file("./scripts/user_data.yaml")
+  template = "${file("${path.module}/scripts/user_data.yaml.tpl")}"
+  vars = {}
 }
 
 resource "hcloud_ssh_key" "ssh_keys" {
@@ -18,6 +19,7 @@ resource "hcloud_server" "server" {
     ipv4_enabled = true
     ipv6_enabled = true
   }
+  user_data = data.template_file.user_data.rendered
 }
 
 resource "gandi_livedns_record" "a_record" {
