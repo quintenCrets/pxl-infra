@@ -1,6 +1,8 @@
 data "template_file" "user_data" {
-  template = "${file("${path.module}/scripts/user_data.yaml.tpl")}"
-  vars = {}
+  template = file("${path.module}/scripts/user_data.yaml.tpl")
+  vars = {
+    student_name = lower(var.student_name)
+  }
 }
 
 resource "hcloud_ssh_key" "ssh_keys" {

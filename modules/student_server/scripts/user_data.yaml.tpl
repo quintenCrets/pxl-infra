@@ -1,7 +1,6 @@
 #cloud-config
 
 package_upgrade: true
-
 packages:
   - postgresql-server
   - postgresql-contrib
@@ -9,9 +8,61 @@ packages:
   - php-fpm
   - php-pgsql
   - php-pdo_pgsql
+  - php-curl
+  - php-zip
+  - php-json
+  - php-mysqli
+  - php-gd
+  - php-xml
   - git
-
+write_files:
+  - content: |
+      https://server-of-${student_name}.pxl.bjth.xyz {
+        root * /var/www/
+        file_server browse
+        php_fastcgi unix//run/php-fpm/www.sock
+      }
+    path: "/tmp/Caddyfile.pxl"
 runcmd:
+  # Install Caddy
   - !!str "dnf --assumeyes install 'dnf-command(copr)'"
   - !!str "dnf --assumeyes copr enable @caddy/caddy"
   - !!str "dnf --assumeyes install caddy"
+  - !!str "mv /tmp/Caddyfile.pxl /etc/caddy/Caddyfile"
+  - !!str "chown caddy:caddy /etc/caddy/Caddyfile"
+  - !!str "chmod 640 /etc/caddy/Caddyfile"
+  - !!str "caddy fmt --overwrite /etc/caddy/Caddyfile"
+  # Initialise PostgreSQL
+  - !!str "postgresql-setup --initdb --unit postgresql"
+  - !!str "sudo -u postgres psql --command=\"CREATE ROLE psql WITH SUPERUSER CREATEDB
+    CREATEROLE LOGIN ENCRYPTED PASSWORD 'psql';\""
+  - !!str "sudo -u postgres psql --command='CREATE DATABASE webtech;'"
+  - !!str "sudo -u postgres psql --command='GRANT ALL PRIVILEGES ON DATABASE webtech
+    TO psql;'"
+  - !!str "sed -i 's/#listen_addresses = 'localhost'         # what IP address(es)
+    to listen on;/listen_addresses = '*' \t\t\t        # what IP address(es) to listen
+    on;/g' /var/lib/pgsql/data/postgresql.conf"
+  - !!str "echo 'host    all             all             0.0.0.0/0\t\tmd5' > /var/lib/pgsql/data/pg_hba.conf"
+  # Install Admnier
+  - !!str "wget --output-document=/var/www/adminer.php https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php"
+  # Configure web root
+  - !!str "chown -R caddy:caddy /var/www/"
+  - !!str "chmod -R 775 /var/www/"
+  # Set correct user and group for php-fpm
+  - !!str "sed -i 's/user = apache/user = caddy/g' /etc/php-fpm.d/www.conf"
+  - !!str "sed -i 's/group = apache/group = caddy/g' /etc/php-fpm.d/www.conf"
+  - !!str "sed -i 's/;listen.owner = nobody/listen.owner = caddy/g' /etc/php-fpm.d/www.conf"
+  - !!str "sed -i 's/;listen.group = nobody/listen.group = caddy/g' /etc/php-fpm.d/www.conf"
+  - !!str "sed -i 's/;listen.mode = 0660/listen.mode = 0660/g' /etc/php-fpm.d/www.conf"
+  - !!str "sed -i 's/listen.acl_users = apache,nginx/;listen.acl_users = apache,nginx/g'
+    /etc/php-fpm.d/www.conf"
+  # Reload systemd daemon
+  - !!str "systemctl daemon-reload"
+  # Enable all services
+  - !!str "systemctl enable caddy.service"
+  - !!str "systemctl enable php-fpm.service"
+  - !!str "systemctl enable postgresql.service"
+  # Start services
+  - !!str "systemctl start --no-block caddy.service"
+  - !!str "systemctl start --no-block php-fpm.service"
+  - !!str "systemctl start --no-block postgresql.service"
