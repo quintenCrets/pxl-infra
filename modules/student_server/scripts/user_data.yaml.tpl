@@ -50,6 +50,7 @@ runcmd:
   - !!str "sed -i 's/;listen.mode = 0660/listen.mode = 0660/g' /etc/php-fpm.d/www.conf"
   - !!str "sed -i 's/listen.acl_users = apache,nginx/;listen.acl_users = apache,nginx/g'
     /etc/php-fpm.d/www.conf"
+  - !!str "chown -R caddy:caddy /var/lib/php/session"
   # Reload systemd daemon
   - !!str "systemctl daemon-reload"
   # Enable all services
