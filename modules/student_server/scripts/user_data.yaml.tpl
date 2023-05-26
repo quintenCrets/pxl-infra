@@ -60,4 +60,5 @@ runcmd:
   # Start services
   - !!str "systemctl start --no-block caddy.service"
   - !!str "systemctl start --no-block php-fpm.service"
-  - !!str "systemctl start --no-block postgresql.service"
+  # Don't start postgresql by default, due to security concerns
+  # - !!str "systemctl start --no-block postgresql.service"
