@@ -12,7 +12,7 @@ locals {
     }
 	
     team9 = {
-      ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILO0JUzYFZw3BGSNSwWbcm2W0yi/UdosTr1/70ji6E3R azuread\patrickkenis@DESKTOP-873OUQA"]
+      ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILO0JUzYFZw3BGSNSwWbcm2W0yi/UdosTr1/70ji6E3R azuread\\patrickkenis@DESKTOP-873OUQA"]
     }
 	
     group11 = {
