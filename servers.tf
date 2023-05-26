@@ -22,6 +22,10 @@ locals {
     Team5 = {
       ssh_keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCb90rhgjfh4YrKF8PZNHgoBSZrcgLTv5a4fOzhMpZPLsRva9YDj6FaqwzHgrr7Pb5gARqdDX7JC6agubdVE5TKsma0eweYkxygVKhkcMQUMsqnZDJKzJN34HQMHiBfl7eW8YncePxIXQ533nnv7VYwu45inCI5qPtSqEOnqnR7DPhDqgjPZbhfqcJ/7PtO4LBuAw86sAUk05N/cGod9Ev77TAf47ENJiMUqb4p9C/eabjUHD+y9UCDOSn9i9Umh1aRtYAzEQVI5s0PI70LhwVgjbDJdfRZlumGJ5pM9CKnnDAZ3IXrZk9e60OwJPXdqVWIX/d5t9jE4oSMoOjrxHOm/DIF5GR0pFwsAUyfy/4LcuXkwBlOnE5oBw/zW2GxSpiMXakcvd97q06eSY41tPtSTKcfhpg/VE4Bylh0lGAaz9QVT+vQmy2AqwrHJ2llYlAFWf5rucnu3yPPYYdYrefwABk7AlUdj06ohYftoEy8e4BAVVQOxQbWWjaFxBYhVRM= gebruiker@DESKTOP-BEAVFHB"]
     }
+BramTruyens = {
+      ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDasSs+aNMEYu5hR9ALtYdE5rA0vXqgFuNn0jnuXXtqg bramt@LAPTOP-VDFCIIQ9"
+      ]
+    }
   }
 }
 
