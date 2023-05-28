@@ -35,13 +35,6 @@ jobs:
         with:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-      - name: "Create Terraform plugin cache directory"
-        run: mkdir -p $GITHUB_WORKSPACE/.terraform.d/plugin-cache
-      - uses: actions/cache@v3
-        name: "Cache Terraform plugins"
-        with:
-          path: $GITHUB_WORKSPACE/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('$GITHUB_WORKSPACE/.terraform.d/plugin-cache') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
@@ -61,13 +54,6 @@ jobs:
         with:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-      - name: "Create Terraform plugin cache directory"
-        run: mkdir -p $GITHUB_WORKSPACE/.terraform.d/plugin-cache
-      - uses: actions/cache@v3
-        name: "Cache Terraform plugins"
-        with:
-          path: $GITHUB_WORKSPACE/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('$GITHUB_WORKSPACE/.terraform.d/plugin-cache') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
