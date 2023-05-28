@@ -33,9 +33,14 @@ jobs:
         with:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - uses: actions/cache@v2
+        name: cache plugins
+        with:
+          path: ${{ runner.temp }}/_github_home/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('somepath/.terraform.lock.hcl') }}
       - name: "Initialise Terraform"
         id: init
-        run: terraform init -backend=false
+        run: terraform init
       - name: "Generate Terraform plan"
         id: plan
         run: terraform plan -no-color
@@ -49,7 +54,12 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: "1.4.2"
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}\
+      - uses: actions/cache@v2
+        name: cache plugins
+        with:
+          path: ${{ runner.temp }}/_github_home/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('somepath/.terraform.lock.hcl') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
