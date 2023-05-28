@@ -28,7 +28,7 @@ jobs:
     name: "Plan Terraform code"
     runs-on: ubuntu-latest
     env:
-      TF_PLUGIN_CACHE_DIR: "$HOME/.terraform.d/plugin-cache"
+      TF_PLUGIN_CACHE_DIR: "$GITHUB_WORKSPACE/.terraform.d/plugin-cache"
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
@@ -36,12 +36,12 @@ jobs:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       - name: "Create Terraform plugin cache directory"
-        run: mkdir -p $HOME/.terraform.d/plugin-cache
+        run: mkdir -p $GITHUB_WORKSPACE/.terraform.d/plugin-cache
       - uses: actions/cache@v3
         name: "Cache Terraform plugins"
         with:
-          path: $HOME/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('$HOME/.terraform.d/plugin-cache') }}
+          path: $GITHUB_WORKSPACE/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('$GITHUB_WORKSPACE/.terraform.d/plugin-cache') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
@@ -54,7 +54,7 @@ jobs:
     name: "Apply Terraform code"
     runs-on: ubuntu-latest
     env:
-      TF_PLUGIN_CACHE_DIR: "$HOME/.terraform.d/plugin-cache"
+      TF_PLUGIN_CACHE_DIR: "$GITHUB_WORKSPACE/.terraform.d/plugin-cache"
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
@@ -62,12 +62,12 @@ jobs:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       - name: "Create Terraform plugin cache directory"
-        run: mkdir -p $HOME/.terraform.d/plugin-cache
+        run: mkdir -p $GITHUB_WORKSPACE/.terraform.d/plugin-cache
       - uses: actions/cache@v3
         name: "Cache Terraform plugins"
         with:
-          path: $HOME/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('$HOME/.terraform.d/plugin-cache') }}
+          path: $GITHUB_WORKSPACE/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('$GITHUB_WORKSPACE/.terraform.d/plugin-cache') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
