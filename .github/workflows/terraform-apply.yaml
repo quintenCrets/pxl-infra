@@ -24,7 +24,7 @@ jobs:
         id: validate
         run: terraform validate -no-color
   terraform_plan:
-    needs: [terraform_check]
+    needs: [terraform_validate]
     name: "Plan Terraform code"
     runs-on: ubuntu-latest
     steps:
