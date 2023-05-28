@@ -27,17 +27,21 @@ jobs:
     needs: [terraform_validate]
     name: "Plan Terraform code"
     runs-on: ubuntu-latest
+    env:
+      TF_PLUGIN_CACHE_DIR: "$HOME/.terraform.d/plugin-cache"
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: "Create Terraform plugin cache directory"
+        run: mkdir -p $HOME/.terraform.d/plugin-cache
       - uses: actions/cache@v3
         name: "Cache Terraform plugins"
         with:
-          path: ${{ runner.temp }}/_github_home/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('somepath/.terraform.lock.hcl') }}
+          path: $HOME/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('$HOME/.terraform.d/plugin-cache') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
@@ -49,17 +53,21 @@ jobs:
     needs: [terraform_plan]
     name: "Apply Terraform code"
     runs-on: ubuntu-latest
+    env:
+      TF_PLUGIN_CACHE_DIR: "$HOME/.terraform.d/plugin-cache"
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: "Create Terraform plugin cache directory"
+        run: mkdir -p $HOME/.terraform.d/plugin-cache
       - uses: actions/cache@v3
         name: "Cache Terraform plugins"
         with:
-          path: ${{ runner.temp }}/_github_home/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('somepath/.terraform.lock.hcl') }}
+          path: $HOME/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('$HOME/.terraform.d/plugin-cache') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
