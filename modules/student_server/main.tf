@@ -1,10 +1,3 @@
-data "template_file" "user_data" {
-  template = file("${path.module}/scripts/user_data.yaml.tpl")
-  vars = {
-    student_name = lower(var.student_name)
-  }
-}
-
 resource "hcloud_ssh_key" "ssh_keys" {
   count      = length(var.ssh_keys)
   name       = "SSH Key ${count.index} of ${lower(var.student_name)}"
@@ -21,7 +14,9 @@ resource "hcloud_server" "server" {
     ipv4_enabled = true
     ipv6_enabled = true
   }
-  user_data = data.template_file.user_data.rendered
+  user_data = templatefile("${path.module}/scripts/user_data.yaml.tpl", {
+    student_name = lower(var.student_name)
+  })
 }
 
 resource "gandi_livedns_record" "a_record" {
