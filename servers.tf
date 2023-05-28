@@ -2,8 +2,6 @@ locals {
   students = {
     # The map of student to create a server for, and their associated ssh keys.
     # NOTE: It's possible to enter the name of your team, instead of your own.
-    # Example:
-    #
     team16 = {
       ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFel+5hs1xAtw9AryNayPa2nj5q3uZq7NVs+PU/BvgEl onlyg@MSI-Katana"]
     }
@@ -40,6 +38,7 @@ locals {
     teamJnM = {
       ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHKcPhLMq6tXObUVTKWh0jIfosPFqyAhvsgDNQs3gNQH jaspe@MSI", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEoqsX6vl6LKlNUmeHFJc6geEhe3K0RVO+nTrRWylpT6 jonas@DESKTOP-HD1COPB"]
     }
+    bryan = {}
   }
 }
 
