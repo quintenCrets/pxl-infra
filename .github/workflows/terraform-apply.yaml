@@ -34,7 +34,7 @@ jobs:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       - uses: actions/cache@v2
-        name: cache plugins
+        name: "Cache Terraform plugins"
         with:
           path: ${{ runner.temp }}/_github_home/.terraform.d/plugin-cache
           key: ${{ runner.os }}-tf-${{ hashFiles('somepath/.terraform.lock.hcl') }}
@@ -55,11 +55,6 @@ jobs:
         with:
           terraform_version: "1.4.2"
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}\
-      - uses: actions/cache@v2
-        name: cache plugins
-        with:
-          path: ${{ runner.temp }}/_github_home/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-tf-${{ hashFiles('somepath/.terraform.lock.hcl') }}
       - name: "Initialise Terraform"
         id: init
         run: terraform init
