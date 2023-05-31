@@ -3,7 +3,7 @@ locals {
     # The map of student to create a server for, and their associated ssh keys.
     # NOTE: It's possible to enter the name of your team, instead of your own.
     team16 = {
-      ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEzP9TCeapVQiX94sYfOAOaikH/yPyHcimDQwd0hFhxj onlyg@MSI-Katana", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvpWIIS3chmqXopI7B/zieC7uHEYuBXDoOQN9HltrNB mauro@MSI", "SHA256:u4sELTjRf1mobNykwnBe31GajB+WHJIORFzrrMjlocs joosv@Ferry"]
+      ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEzP9TCeapVQiX94sYfOAOaikH/yPyHcimDQwd0hFhxj onlyg@MSI-Katana", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFvpWIIS3chmqXopI7B/zieC7uHEYuBXDoOQN9HltrNB mauro@MSI"]
     }
     team1 = {
       ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3qsSbrUxgzZJIVRr5LTNQhEyvyhScahfeuEm3LKQbw kobed@Beta", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBohO6ZHavw3wg0sMRQ+Lsx9zcEs4YzLLbutYlZ0730b thoma@Thomas-laptop", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAjiUSbeD13PfDykNJn7GUEO5pNBtrRdkmv5D7qP792O ceyha@MSI", "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGLSOfOk9jAUlRE9s5RzI0AoCwNmDrPWiswxsO9nUPte chonkah@chonkah-HP-ProBook-6570b"]
@@ -32,7 +32,7 @@ locals {
       ssh_keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCb90rhgjfh4YrKF8PZNHgoBSZrcgLTv5a4fOzhMpZPLsRva9YDj6FaqwzHgrr7Pb5gARqdDX7JC6agubdVE5TKsma0eweYkxygVKhkcMQUMsqnZDJKzJN34HQMHiBfl7eW8YncePxIXQ533nnv7VYwu45inCI5qPtSqEOnqnR7DPhDqgjPZbhfqcJ/7PtO4LBuAw86sAUk05N/cGod9Ev77TAf47ENJiMUqb4p9C/eabjUHD+y9UCDOSn9i9Umh1aRtYAzEQVI5s0PI70LhwVgjbDJdfRZlumGJ5pM9CKnnDAZ3IXrZk9e60OwJPXdqVWIX/d5t9jE4oSMoOjrxHOm/DIF5GR0pFwsAUyfy/4LcuXkwBlOnE5oBw/zW2GxSpiMXakcvd97q06eSY41tPtSTKcfhpg/VE4Bylh0lGAaz9QVT+vQmy2AqwrHJ2llYlAFWf5rucnu3yPPYYdYrefwABk7AlUdj06ohYftoEy8e4BAVVQOxQbWWjaFxBYhVRM= gebruiker@DESKTOP-BEAVFHB",
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIT7FdCTfgPdsQnBm/hRZtNFaaPCV7lPfse3EOn1lxsW oliwier@DESKTOP-DPCILQ3",
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGf+kcf1x/2nxnmIlbeqO5wqdCFN9tK/FZqzFUM1ginQ oliwi@olilaptop",
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGLkl2lwL2wKM32WsatawJpa7icTlS0TPASbPphYvG/X runar@RunarW11", ]
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGLkl2lwL2wKM32WsatawJpa7icTlS0TPASbPphYvG/X runar@RunarW11"]
     }
     BramTruyens = {
       ssh_keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDasSs+aNMEYu5hR9ALtYdE5rA0vXqgFuNn0jnuXXtqg bramt@LAPTOP-VDFCIIQ9"
