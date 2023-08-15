@@ -77,12 +77,19 @@ jobs:
       - name: "Initialise Terraform"
         id: init
         run: terraform init
+      - name: "Terraform Output"
+        id: output
+        run: terraform output -no-color
       - name: "Update README.md"
         id: update_readme
         run: |
-          terraform output -no-color > README.md
+          {
+            echo '```'
+            echo "${{ steps.output.outputs.stdout }}"
+            echo '```'
+          } > README.md
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add README.md
-          git commit -am "chore(readme): update README with new IPv$ addresses"
+          git commit -am "chore(readme): update README with new IPv4 addresses"
           git push
