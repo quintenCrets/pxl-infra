@@ -77,15 +77,12 @@ jobs:
       - name: "Initialise Terraform"
         id: init
         run: terraform init
-      - name: "Terraform Output"
-        id: output
-        run: terraform output -no-color
       - name: "Update README.md"
         id: update_readme
         run: |
           {
             echo '```'
-            echo "${{ steps.output.outputs.stdout }}"
+            terraform output -no-color
             echo '```'
           } > README.md
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
