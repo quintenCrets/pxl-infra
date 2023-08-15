@@ -1,5 +1,5 @@
-output "ipv4_addresses" {
+output "servers" {
   value = {
-    for k, v in module.student_servers : k => v.instance_ipv4_addr
+    for k, v in module.student_servers : k => { for k, v in v : k => v }
   }
 }

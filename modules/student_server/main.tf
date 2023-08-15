@@ -1,3 +1,9 @@
+locals {
+  record_name = "server-of-${lower(var.student_name)}.pxl"
+  record_zone = "bjth.xyz"
+  fqdn        = "${local.record_name}.${local.record_zone}"
+}
+
 resource "hcloud_ssh_key" "ssh_keys" {
   count      = length(var.ssh_keys)
   name       = "SSH Key ${count.index} of ${lower(var.student_name)}"
@@ -20,17 +26,17 @@ resource "hcloud_server" "server" {
 }
 
 resource "gandi_livedns_record" "a_record" {
-  name   = "server-of-${lower(var.student_name)}.pxl"
-  ttl    = 10800
+  name   = local.record_name
+  ttl    = 300
   type   = "A"
   values = [resource.hcloud_server.server.ipv4_address]
-  zone   = "bjth.xyz"
+  zone   = local.record_zone
 }
 
 resource "gandi_livedns_record" "aaaa_record" {
-  name   = "server-of-${lower(var.student_name)}.pxl"
-  ttl    = 10800
+  name   = local.record_name
+  ttl    = 300
   type   = "AAAA"
   values = [resource.hcloud_server.server.ipv6_address]
-  zone   = "bjth.xyz"
+  zone   = local.record_zone
 }
