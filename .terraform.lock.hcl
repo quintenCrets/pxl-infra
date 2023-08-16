@@ -6,6 +6,7 @@ provider "registry.terraform.io/go-gandi/gandi" {
   constraints = "~> 2.0.0"
   hashes = [
     "h1:AU3HhAAkdrZmCjHlRsQ4glc4nzsRjwIS9Z4XfvNsfVg=",
+    "h1:IoR2JM08h77holBjPfhAl30rDpKTdWfAkk00HvG9X/s=",
     "zh:120e59e52d1dc659a3b3be5a32edc43404f0713be30f03502a43fcae528548e4",
     "zh:199d314f4a7a71dfed4a1766c378654514993180886a4062ae1c169adc28e99b",
     "zh:3d78b552bb11a6d77dcc5f08f9477b234cd113c58c052f1ad3e98f3c3b6b4762",
@@ -26,6 +27,7 @@ provider "registry.terraform.io/hetznercloud/hcloud" {
   version     = "1.39.0"
   constraints = "1.39.0"
   hashes = [
+    "h1:CSo1Bl3eKS0Fl3ORGr9M0VqNSJ0NYAQ/CxZEzc5HevU=",
     "h1:og7mFqBdiqlWTKog7WitcdBrtf+dnQ7niasjSr7bLLA=",
     "zh:0b1cef3a2bf213c8c0df0973c21d494ce5e554db3d8d33bd9b1727b50f4a245c",
     "zh:41c4fed19cb42fd8b56c13a4114faa8fd0bdfd9b1343d2ae663e80da44ccfee7",
