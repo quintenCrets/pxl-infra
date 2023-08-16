@@ -14,6 +14,12 @@ locals {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGf+kcf1x/2nxnmIlbeqO5wqdCFN9tK/FZqzFUM1ginQ oliwi@olilaptop"
       ]
     }
+    xander = {
+      ssh_keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALj15sjvwES0JDXVABoAo+h66gv+00TBMVkEfpy7B74 xande@Xander"
+        
+      ]
+    }
     Thibe = {
       ssh_keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA33dcN4/swspJZ9OPYLNWC2VMYu9J69hbod47kbnQ62 gebruiker@DESKTOP-BEAVFHB"
